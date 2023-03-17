@@ -2,6 +2,7 @@ import React from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import "./App.css";
 const TestList = ({ data }) => {
+    console.log(data);
     const handleChooseClassesList = (isDragging) => {
         return "list" + " " + (isDragging ? "list_is_dragging" : " ");
     };
@@ -34,15 +35,15 @@ const TestList = ({ data }) => {
                                     <h6 style={{ paddingLeft: "2%" }}>
                                         Marvel SuperHeroes
                                     </h6>
-                                    {item[1].map((data, index) => (
+                                    {item[1].map((elem, index) => (
                                         <Draggable
-                                            key={data}
-                                            draggableId={`${item[0]}${data}${index}`}
+                                            key={elem._id}
+                                            draggableId={`${elem._id}${index}`}
                                             index={index}
                                         >
                                             {(provided, snapshot) => (
                                                 <li
-                                                    key={index}
+                                                    key={elem._id + index}
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
@@ -54,7 +55,7 @@ const TestList = ({ data }) => {
                                                             .style
                                                     }
                                                 >
-                                                    {data}
+                                                    {elem.name}
                                                 </li>
                                             )}
                                         </Draggable>
